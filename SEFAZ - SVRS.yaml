@@ -1,0 +1,208 @@
+zabbix_export:
+  version: '6.0'
+  date: '2024-06-02T00:02:25Z'
+  groups:
+    - uuid: 1ae23252445b4a02971235eb33fb8374
+      name: Serviços
+  hosts:
+    - host: 'SEFAZ - SVRS'
+      name: 'SEFAZ - SVRS'
+      templates:
+        - name: 'ICMP Ping'
+      groups:
+        - name: Serviços
+      interfaces:
+        - ip: 4.201.99.36
+          dns: nfe.svrs.rs.gov.br
+          interface_ref: if1
+      items:
+        - name: Autorizacao
+          type: EXTERNAL
+          key: 'NFEMonitor.py[SVRS,Autorizacao]'
+          delay: 5m
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            - type: STR_REPLACE
+              parameters:
+                - '0'
+                - Online
+            - type: STR_REPLACE
+              parameters:
+                - '1'
+                - Alerta
+            - type: STR_REPLACE
+              parameters:
+                - '2'
+                - Offline
+          interface_ref: if1
+          triggers:
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Autorizacao],#1:now)="Alerta"'
+              name: 'Autorização - Alerta'
+              priority: HIGH
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Autorizacao],#1:now)="Offline"'
+              name: 'Autorização - Offline'
+              priority: DISASTER
+        - name: 'Consulta cadastro'
+          type: EXTERNAL
+          key: 'NFEMonitor.py[SVRS,Consulta cadastro]'
+          delay: 5m
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            - type: STR_REPLACE
+              parameters:
+                - '0'
+                - Online
+            - type: STR_REPLACE
+              parameters:
+                - '1'
+                - Alerta
+            - type: STR_REPLACE
+              parameters:
+                - '2'
+                - Offline
+          interface_ref: if1
+          triggers:
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Consulta cadastro],#1:now)="Alerta"'
+              name: 'Consulta Cadastro - Alerta'
+              priority: HIGH
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Consulta cadastro],#1:now)="Offline"'
+              name: 'Consulta Cadastro - Offline'
+              priority: DISASTER
+        - name: 'Consulta protocolo'
+          type: EXTERNAL
+          key: 'NFEMonitor.py[SVRS,Consulta protocolo]'
+          delay: 5m
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            - type: STR_REPLACE
+              parameters:
+                - '0'
+                - Online
+            - type: STR_REPLACE
+              parameters:
+                - '1'
+                - Alerta
+            - type: STR_REPLACE
+              parameters:
+                - '2'
+                - Offline
+          interface_ref: if1
+          triggers:
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Consulta protocolo],#1:now)="Alerta"'
+              name: 'Consulta Protocolo - Alerta'
+              priority: HIGH
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Consulta protocolo],#1:now)="Offline"'
+              name: 'Consulta Protocolo - Offline'
+              priority: DISASTER
+        - name: Inutilizacao
+          type: EXTERNAL
+          key: 'NFEMonitor.py[SVRS,Inutilizacao]'
+          delay: 5m
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            - type: STR_REPLACE
+              parameters:
+                - '0'
+                - Online
+            - type: STR_REPLACE
+              parameters:
+                - '1'
+                - Alerta
+            - type: STR_REPLACE
+              parameters:
+                - '2'
+                - Offline
+          interface_ref: if1
+          triggers:
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Inutilizacao],#1:now)="Alerta"'
+              name: 'Inutilização - Alerta'
+              priority: HIGH
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Inutilizacao],#1:now)="Offline"'
+              name: 'Inutilização - Offline'
+              priority: DISASTER
+        - name: 'Recepcao evento'
+          type: EXTERNAL
+          key: 'NFEMonitor.py[SVRS,Recepcao evento]'
+          delay: 5m
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            - type: STR_REPLACE
+              parameters:
+                - '0'
+                - Online
+            - type: STR_REPLACE
+              parameters:
+                - '1'
+                - Alerta
+            - type: STR_REPLACE
+              parameters:
+                - '2'
+                - Offline
+          interface_ref: if1
+          triggers:
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Recepcao evento],#1:now)="Alerta"'
+              name: 'Recepção evento - Alerta'
+              priority: HIGH
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Recepcao evento],#1:now)="Offline"'
+              name: 'Recepção evento - Offline'
+              priority: DISASTER
+        - name: 'Retorno autorizacao'
+          type: EXTERNAL
+          key: 'NFEMonitor.py[SVRS,Retorno autorizacao]'
+          delay: 5m
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            - type: STR_REPLACE
+              parameters:
+                - '0'
+                - Online
+            - type: STR_REPLACE
+              parameters:
+                - '1'
+                - Alerta
+            - type: STR_REPLACE
+              parameters:
+                - '2'
+                - Offline
+          interface_ref: if1
+          triggers:
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Retorno autorizacao],#1:now)="Alerta"'
+              name: 'Retorno Autorização - Alerta'
+              priority: HIGH
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Retorno autorizacao],#1:now)="Offline"'
+              name: 'Retorno Autorização - Offline'
+              priority: DISASTER
+        - name: 'Status servico'
+          type: EXTERNAL
+          key: 'NFEMonitor.py[SVRS,Status servico]'
+          delay: 5m
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            - type: STR_REPLACE
+              parameters:
+                - '0'
+                - Online
+            - type: STR_REPLACE
+              parameters:
+                - '1'
+                - Alerta
+            - type: STR_REPLACE
+              parameters:
+                - '2'
+                - Offline
+          interface_ref: if1
+          triggers:
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Status servico],#1:now)="Alerta"'
+              name: 'Status serviço - Alerta'
+              priority: HIGH
+            - expression: 'last(/SEFAZ - SVRS/NFEMonitor.py[SVRS,Status servico],#1:now)="Offline"'
+              name: 'Status serviço - Offline'
+              priority: DISASTER
+      inventory_mode: DISABLED
